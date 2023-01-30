@@ -1,7 +1,7 @@
 import axios from "axios";
-
+import {HOST} from "./constants";
 const clientInstance = axios.create({
-  baseURL: 8080,
+  baseURL: HOST,
 });
 
 export default clientInstance;

@@ -1,6 +1,68 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Layout from "@/components/Layout/layout";
+import axios from "axios";
+import router from "next/router";
+import Router from "next/router";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function signup() {
+  const [gender, setGender] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [formation, setFormation] = useState("");
+  const [adress, setadress] = useState("");
+
+  const onChangename = (e: { target: { value: any } }) => {
+    const currentname = e.target.value;
+    setName(currentname);
+  };
+  const onChangeemail = (e: { target: { value: any } }) => {
+    const currentemail = e.target.value;
+    setEmail(currentemail);
+  };
+  const onChangepassward = (e: { target: { value: any } }) => {
+    const currentpassward = e.target.value;
+    setPassword(currentpassward);
+  };
+  const onChangegender = (e: { target: { value: any } }) => {
+    const currentgender = e.target.value;
+    setGender(currentgender);
+  };
+  const onChangephone = (e: { target: { value: any } }) => {
+    const currentphone = e.target.value;
+    setPhone(currentphone);
+  };
+  const onChangeformation = (e: { target: { value: any } }) => {
+    const currentformation = e.target.value;
+    setFormation(currentformation);
+  };
+  const onChangeadress = (e: { target: { value: any } }) => {
+    const currentadress = e.target.value;
+    setadress(currentadress);
+  };
+
+  function ok() {
+    axios
+      .post("http://localhost:8080/signup", {
+        email: email,
+        password: password,
+        username: name,
+        gender: gender,
+        phone: phone,
+        formation: formation,
+        adress: adress,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   return (
     <Layout>
       <div className="flex justify-center w-full">
@@ -21,6 +83,8 @@ export default function signup() {
                   name="name"
                   id="name"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  value={name}
+                  onChange={onChangename}
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
@@ -30,6 +94,8 @@ export default function signup() {
                   name="email"
                   id="email"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  value={email}
+                  onChange={onChangeemail}
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
@@ -39,6 +105,8 @@ export default function signup() {
                   name="phone"
                   id="phone"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  value={phone}
+                  onChange={onChangephone}
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
@@ -48,27 +116,47 @@ export default function signup() {
                   name="passward"
                   id="passward"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  value={password}
+                  onChange={onChangepassward}
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>비밀번호 확인</h1>
                 <input
                   type="passward"
-                  name="passwardok"
-                  id="passwardok"
+                  name="passwordConfirm"
+                  id="passwordConfirm"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>성별</h1>
                 <select
-                  name="sex"
+                  name="gender"
                   className="bg-slate-100 rounded-lg px-2 py-1 w-[80%] lg:w-[60%] placeholder:text-gray-300 focus:border focus:outline-none focus:border-blue-500"
-                  id="sex"
+                  id="gender"
+                  value={gender}
+                  onChange={onChangegender}
                 >
                   <option value="0" label="" selected="selected"></option>
-                  <option value="Afghanistan">남자</option>
-                  <option value="Albania">여자</option>
+                  <option value="남자">남자</option>
+                  <option value="여자">여자</option>
+                </select>
+              </div>
+              <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
+                <h1>포지션</h1>
+                <select
+                  name="formation"
+                  className="bg-slate-100 rounded-lg px-2 py-1 w-[80%] lg:w-[60%] placeholder:text-gray-300 focus:border focus:outline-none focus:border-blue-500"
+                  id="formation"
+                  value={formation}
+                  onChange={onChangeformation}
+                >
+                  <option value="0" label="" selected="selected"></option>
+                  <option value="FW">FW</option>
+                  <option value="MF">MF</option>
+                  <option value="DF">DF</option>
+                  <option value="GK">GK</option>
                 </select>
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
@@ -79,10 +167,16 @@ export default function signup() {
                   cols="10"
                   rows="3"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-300 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  value={adress}
+                  onChange={onChangeadress}
                 ></textarea>
               </div>
               <div className="text-center md:text-left lg:text-right">
-                <button className="bg-blue-500 my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600">
+                <button
+                  onClick={ok}
+                  type="submit"
+                  className="bg-blue-500 my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
+                >
                   Contact Sales
                 </button>
               </div>
