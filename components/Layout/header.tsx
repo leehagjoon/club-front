@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import React from "react";
 
 export default function Haooter() {
@@ -5,17 +7,23 @@ export default function Haooter() {
     <>
       <div className="">
         <nav className=" w-full ">
-          <div className="flex   bg-stone-500 items-center justify-between ">
-            <h1 className="uppercase pl-5 py-4 text-lg font-sans font-bold">
+          <div className="flex    items-center justify-between ">
+            <Link
+              href="/"
+              className="flex items-center pl-10 justify-center text-2xl"
+            >
+              <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 inline-block pr-3">
+                <img src={"./team.png"} style={{ width: "60px" }}></img>
+              </a>
               CLUB SOCCER
-            </h1>
+            </Link>
 
             <ul className="hidden lg:flex items-center text-[18px] font-semibold ">
               <li className="hover:underline  underline-offset-4 decoration-2 decoration-white py-2 rounded-lg px-5">
-                <a href="#">검색</a>
+                <Link href="#">검색</Link>
               </li>
               <li className="hover:underline underline-offset-4 decoration-2 decoration-white py-2 rounded-lg px-5">
-                <a href="/login">로그인</a>
+                <Link href="/login">로그인</Link>
               </li>
             </ul>
           </div>

@@ -18,53 +18,53 @@ export default function signup() {
                 <h1>이름</h1>
                 <input
                   type="text"
-                  name=""
-                  id=""
+                  name="name"
+                  id="name"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>이메일</h1>
                 <input
-                  type="text"
-                  name=""
-                  id=""
+                  type="email"
+                  name="email"
+                  id="email"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>전화번호</h1>
                 <input
-                  type="email"
-                  name=""
-                  id=""
+                  type="tel"
+                  name="phone"
+                  id="phone"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>비밀번호</h1>
                 <input
-                  type="tel"
-                  name=""
-                  id=""
+                  type="passward"
+                  name="passward"
+                  id="passward"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>비밀번호 확인</h1>
                 <input
-                  type="text"
-                  name=""
-                  id=""
+                  type="passward"
+                  name="passwardok"
+                  id="passwardok"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>성별</h1>
                 <select
-                  name="country"
+                  name="sex"
                   className="bg-slate-100 rounded-lg px-2 py-1 w-[80%] lg:w-[60%] placeholder:text-gray-300 focus:border focus:outline-none focus:border-blue-500"
-                  id="country"
+                  id="sex"
                 >
                   <option value="0" label="" selected="selected"></option>
                   <option value="Afghanistan">남자</option>
@@ -74,8 +74,8 @@ export default function signup() {
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>주소</h1>
                 <textarea
-                  name=""
-                  id=""
+                  name="adress"
+                  id="adress"
                   cols="10"
                   rows="3"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-300 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
