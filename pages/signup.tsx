@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Layout from "@/components/Layout/layout";
-import axios from "axios";
+import axios from "../utils/customAxiosUtil";
 import router from "next/router";
 import Router from "next/router";
 import React, { useState } from "react";
@@ -45,24 +45,26 @@ export default function signup() {
     setadress(currentadress);
   };
 
-  function ok() {
-    axios
-      .post("http://localhost:8080/signup", {
-        email: email,
-        password: password,
-        username: name,
-        gender: gender,
-        phone: phone,
-        formation: formation,
-        adress: adress,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  const ok = async () => {
+    const data = await axios.post("/singup");
+  };
+  //   axios
+  //     .post("/signup", {
+  //       email: email,
+  //       password: password,
+  //       username: name,
+  //       gender: gender,
+  //       phone: phone,
+  //       formation: formation,
+  //       adress: adress,
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
   return (
     <Layout>
       <div className="flex justify-center w-full">
