@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 export default function signup() {
   const [gender, setGender] = useState("");
   const [name, setName] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
@@ -40,31 +41,41 @@ export default function signup() {
     const currentformation = e.target.value;
     setFormation(currentformation);
   };
+  const onChangepasswordConfirm = (e: { target: { value: any } }) => {
+    const currentpasswordConfirm = e.target.value;
+    setPasswordConfirm(currentpasswordConfirm);
+  };
+  const onChangeid = (e: { target: { value: any } }) => {
+    const currentid = e.target.value;
+    setId(currentid);
+  };
   const onChangeadress = (e: { target: { value: any } }) => {
     const currentadress = e.target.value;
     setadress(currentadress);
   };
 
-  const ok = async () => {
-    const data = await axios.post("/singup");
+  const ok = () => {
+    if (password === passwordConfirm) {
+      // const data = await axios.post("/singup");
+      axios
+        .post("/api/acnt/cstmr/signup", {
+          email: email,
+          password: password,
+          username: name,
+          gender: gender,
+          phone: phone,
+          formation: formation,
+          adress: adress,
+          id: id,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
-  //   axios
-  //     .post("/signup", {
-  //       email: email,
-  //       password: password,
-  //       username: name,
-  //       gender: gender,
-  //       phone: phone,
-  //       formation: formation,
-  //       adress: adress,
-  //     })
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
   return (
     <Layout>
       <div className="flex justify-center w-full">
@@ -85,10 +96,29 @@ export default function signup() {
                   name="name"
                   id="name"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
-                  value={name}
+                  defaultValue={name}
                   onChange={onChangename}
                 />
               </div>
+              <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0 ">
+                <h1>아이디</h1>
+                <input
+                  type="text"
+                  name="id"
+                  id="id"
+                  className="bg-slate-100  rounded-lg px-1 py-1 placeholder:text-gray-600 w-[80%] lg:w-[58%] focus:border focus:outline-none focus:border-blue-500"
+                  defaultValue={id}
+                  onChange={onChangeid}
+                />
+                <button
+                  onClick={ok}
+                  type="submit"
+                  className="bg-blue-500   my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
+                >
+                  확인
+                </button>
+              </div>
+
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>이메일</h1>
                 <input
@@ -96,7 +126,7 @@ export default function signup() {
                   name="email"
                   id="email"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
-                  value={email}
+                  defaultValue={email}
                   onChange={onChangeemail}
                 />
               </div>
@@ -107,28 +137,30 @@ export default function signup() {
                   name="phone"
                   id="phone"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
-                  value={phone}
+                  defaultValue={phone}
                   onChange={onChangephone}
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>비밀번호</h1>
                 <input
-                  type="passward"
-                  name="passward"
+                  type="password"
+                  name="password"
                   id="passward"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
-                  value={password}
+                  defaultValue={password}
                   onChange={onChangepassward}
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>비밀번호 확인</h1>
                 <input
-                  type="passward"
+                  type="password"
                   name="passwordConfirm"
                   id="passwordConfirm"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  defaultValue={passwordConfirm}
+                  onChange={onChangepasswordConfirm}
                 />
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
@@ -137,7 +169,7 @@ export default function signup() {
                   name="gender"
                   className="bg-slate-100 rounded-lg px-2 py-1 w-[80%] lg:w-[60%] placeholder:text-gray-300 focus:border focus:outline-none focus:border-blue-500"
                   id="gender"
-                  value={gender}
+                  defaultValue={gender}
                   onChange={onChangegender}
                 >
                   <option value="0" label="" selected="selected"></option>
@@ -151,7 +183,7 @@ export default function signup() {
                   name="formation"
                   className="bg-slate-100 rounded-lg px-2 py-1 w-[80%] lg:w-[60%] placeholder:text-gray-300 focus:border focus:outline-none focus:border-blue-500"
                   id="formation"
-                  value={formation}
+                  defaultValue={formation}
                   onChange={onChangeformation}
                 >
                   <option value="0" label="" selected="selected"></option>
@@ -169,7 +201,7 @@ export default function signup() {
                   cols="10"
                   rows="3"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-300 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
-                  value={adress}
+                  defaultValue={adress}
                   onChange={onChangeadress}
                 ></textarea>
               </div>

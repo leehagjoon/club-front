@@ -12,9 +12,9 @@ export default function Haooter() {
               href="/"
               className="flex items-center pl-10 justify-center text-2xl"
             >
-              <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 inline-block pr-3">
+              <div className="flex title-font font-medium items-center text-gaaAray-900 mb-4 md:mb-0 inline-block pr-3">
                 <img src={"./team.png"} style={{ width: "60px" }}></img>
-              </a>
+              </div>
               CLUB SOCCER
             </Link>
 
