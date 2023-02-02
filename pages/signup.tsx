@@ -17,6 +17,8 @@ export default function signup() {
   const [phone, setPhone] = useState("");
   const [formation, setFormation] = useState("");
   const [adress, setadress] = useState("");
+  const [Zipcode, setZipcode] = useState("");
+
   //아이디 중복 체크
   const [idcheckval, setidcheckval] = useState(false);
   //다음 주소 state
@@ -54,10 +56,6 @@ export default function signup() {
     const currentid = e.target.value;
     setId(currentid);
   };
-  const onChangeadress = (e: { target: { value: any } }) => {
-    const currentadress = e.target.value;
-    setadress(currentadress);
-  };
 
   const ok = () => {
     if (password == passwordConfirm) {
@@ -72,6 +70,7 @@ export default function signup() {
           position: formation,
           addr: adress,
           userId: id,
+          Zipcode: Zipcode,
         })
         .then(function (response) {
           console.log(response);
@@ -98,6 +97,8 @@ export default function signup() {
             주소: ${data.address},
             우편번호: ${data.zonecode}
         `);
+      setadress(data.address);
+      setZipcode(data.zonecode);
       setOpenPostcode(false);
     },
   };
@@ -223,31 +224,40 @@ export default function signup() {
                   <option value="GK">GK</option>
                 </select>
               </div>
-              <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
-                <h1>주소</h1>
+              <div className="flex flex-col justify-end lg:flex-row space-y-1 lg:space-y-0">
                 <button
-                  className="bg-blue-500 my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
+                  className="bg-blue-500  my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
                   onClick={handle.clickButton}
                 >
-                  우편번호 검색
+                  {openPostcode != false ? "닫기" : "우편번호 검색"}
                 </button>
-
-                {openPostcode && (
-                  <DaumPostcode
-                    onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
-                    autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
-                    defaultQuery="" // 팝업을 열때 기본적으로 입력되는 검색어
-                  />
-                )}
               </div>
-              <div className="flex flex-col justify-end lg:flex-row space-y-1 lg:space-y-0">
+              {openPostcode && (
+                <DaumPostcode
+                  className="flex flex-col "
+                  onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
+                  autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                  defaultQuery="" // 팝업을 열때 기본적으로 입력되는 검색어
+                />
+              )}
+              <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
+                <h1>주소</h1>
                 <input
-                  type="password"
-                  name="passwordConfirm"
-                  id="passwordConfirm"
+                  type="text"
+                  name="adress"
+                  id="adress"
                   className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
-                  defaultValue={passwordConfirm}
-                  onChange={onChangepasswordConfirm}
+                  defaultValue={adress}
+                />
+              </div>
+              <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
+                <h1>우편번호</h1>
+                <input
+                  type="text"
+                  name="Zipcode"
+                  id="Zipcode"
+                  className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  defaultValue={Zipcode}
                 />
               </div>
               <div className="text-center md:text-left lg:text-right">
