@@ -44,21 +44,6 @@ export default function login() {
               <h1 className="font-semibold text-xl md:text-5xl text-gray-600 m-2">
                 Login to your account
               </h1>
-              <h1 className="text-sm font-medium text-gray-600 m-2">
-                Login using Social accounts
-              </h1>
-              <div className="text-lg lg:text-xl text-center space-x-5 m-2">
-                <a href="#">
-                  <i className="fa-brands fa-facebook-f text-white  bg-blue-500 rounded-full px-[14px] py-[10px] "></i>
-                </a>
-                <a href="#">
-                  <i className="fa-brands fa-twitter text-white bg-cyan-400  rounded-full px-[10px] py-[10px] "></i>
-                </a>
-                <a href="#">
-                  <i className="fa-brands fa-google-plus-g text-white bg-red-500 rounded-full px-[10px] py-[10px] "></i>
-                </a>
-              </div>
-              <h1 className="text-sm font-medium text-gray-600 m-2">OR</h1>
             </div>
             <div className="flex flex-col justify-center items-center m-2 space-y-6 md:space-y-8">
               <div className="">
@@ -80,16 +65,16 @@ export default function login() {
                 />
               </div>
             </div>
-            <div className=" text-center mt-7 ">
+            <div className=" flex flex-col justify-center items-center dtext-center mt-7 ">
               <button
                 onClick={loginfrm}
-                className="px-24 md:px-[118px] lg:px-[140px] py-2 rounded-md text-white bg-gradient-to-l from-blue-400 to-emerald-400  font-medium m-2 mb-6 "
+                className="px-24 md:px-[118px] lg:w-[340px]	 lg:px-[140px] py-2 rounded-md text-white bg-gradient-to-l from-blue-400 to-emerald-400  font-medium m-2 mb-6 "
               >
                 Sign In
               </button>
               <button
                 onClick={page}
-                className="flex justify-center items-end  px-24 md:px-[118px] lg:px-[140px] py-2 rounded-md text-white bg-gradient-to-l from-blue-400 to-emerald-400  font-medium m-2 mb-6 "
+                className="  px-24 md:px-[118px] lg:w-[340px]  lg:px-[140px] py-2 rounded-md text-white bg-gradient-to-l from-blue-400 to-emerald-400  font-medium m-2 mb-6 "
               >
                 Sign up
               </button>
