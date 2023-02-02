@@ -55,7 +55,7 @@ export default function signup() {
   };
 
   const ok = () => {
-    if (password === passwordConfirm) {
+    if (password == passwordConfirm) {
       // const data = await axios.post("/singup");
       axios
         .post("/api/acnt/cstmr/signup", {
