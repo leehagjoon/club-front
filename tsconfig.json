@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/customAxiosUtil.js"
+    "utils/customAxiosUtil.js",
+    "pages/api/token/refresh API.js"
   ],
   "exclude": ["node_modules"]
 }

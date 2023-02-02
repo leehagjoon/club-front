@@ -5,6 +5,7 @@ import router from "next/router";
 import Router from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import DaumPostcode from "react-daum-postcode";
 
 export default function signup() {
   const [gender, setGender] = useState("");
@@ -16,7 +17,11 @@ export default function signup() {
   const [phone, setPhone] = useState("");
   const [formation, setFormation] = useState("");
   const [adress, setadress] = useState("");
+  //아이디 중복 체크
   const [idcheckval, setidcheckval] = useState(false);
+  //다음 주소 state
+  const [openPostcode, setOpenPostcode] = React.useState<boolean>(false);
+
   const onChangename = (e: { target: { value: any } }) => {
     const currentname = e.target.value;
     setName(currentname);
@@ -80,6 +85,23 @@ export default function signup() {
   const idcheck = () => {
     setidcheckval(true);
   };
+
+  const handle = {
+    // 버튼 클릭 이벤트
+    clickButton: () => {
+      setOpenPostcode((current) => !current);
+    },
+
+    // 주소 선택 이벤트
+    selectAddress: (data: any) => {
+      console.log(`
+            주소: ${data.address},
+            우편번호: ${data.zonecode}
+        `);
+      setOpenPostcode(false);
+    },
+  };
+
   return (
     <Layout>
       <div className="flex justify-center w-full my-10">
@@ -203,15 +225,30 @@ export default function signup() {
               </div>
               <div className="flex flex-col justify-between lg:flex-row space-y-1 lg:space-y-0">
                 <h1>주소</h1>
-                <textarea
-                  name="adress"
-                  id="adress"
-                  cols="10"
-                  rows="3"
-                  className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-300 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
-                  defaultValue={adress}
-                  onChange={onChangeadress}
-                ></textarea>
+                <button
+                  className="bg-blue-500 my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
+                  onClick={handle.clickButton}
+                >
+                  우편번호 검색
+                </button>
+
+                {openPostcode && (
+                  <DaumPostcode
+                    onComplete={handle.selectAddress} // 값을 선택할 경우 실행되는 이벤트
+                    autoClose={false} // 값을 선택할 경우 사용되는 DOM을 제거하여 자동 닫힘 설정
+                    defaultQuery="" // 팝업을 열때 기본적으로 입력되는 검색어
+                  />
+                )}
+              </div>
+              <div className="flex flex-col justify-end lg:flex-row space-y-1 lg:space-y-0">
+                <input
+                  type="password"
+                  name="passwordConfirm"
+                  id="passwordConfirm"
+                  className="bg-slate-100 rounded-lg px-2 py-1 placeholder:text-gray-600 w-[80%] lg:w-[60%] focus:border focus:outline-none focus:border-blue-500"
+                  defaultValue={passwordConfirm}
+                  onChange={onChangepasswordConfirm}
+                />
               </div>
               <div className="text-center md:text-left lg:text-right">
                 <button
