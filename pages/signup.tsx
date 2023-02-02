@@ -16,7 +16,7 @@ export default function signup() {
   const [phone, setPhone] = useState("");
   const [formation, setFormation] = useState("");
   const [adress, setadress] = useState("");
-
+  const [idcheckval, setidcheckval] = useState(false);
   const onChangename = (e: { target: { value: any } }) => {
     const currentname = e.target.value;
     setName(currentname);
@@ -76,16 +76,16 @@ export default function signup() {
         });
     }
   };
+
+  const idcheck = () => {
+    setidcheckval(true);
+  };
   return (
     <Layout>
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full my-10">
         <div className="flex flex-col justify-center items-center max-w-7xl w-[90%]">
           <div className="flex flex-col justify-center text-center space-y-3 my-9">
             <h1 className="text-xl md:text-2xl font-semibold">회원가입</h1>
-            <p className="text-gray-600">
-              Our team is happy to answer your sales questions. Fill out the
-              form and we will be in touch as soon as possible.
-            </p>
           </div>
           <div className="flex flex-col justify-center lg:flex-row  items-center lg:space-x-10 xl:space-x-24 ">
             <div className=" shadow-lg  flex flex-col justify-center space-y-3 md:w-full  mb-7 md:mx-16 lg:mx-0 px-8 py-4 lg:px-4">
@@ -106,14 +106,14 @@ export default function signup() {
                   type="text"
                   name="id"
                   id="id"
-                  className="bg-slate-100  rounded-lg px-1 py-1 placeholder:text-gray-600 w-[80%] lg:w-[58%] focus:border focus:outline-none focus:border-blue-500"
+                  className="bg-slate-100  rounded-lg px-1 py-1 placeholder:text-gray-600 w-[45%] ml-20 lg:w-[39%] focus:border focus:outline-none focus:border-blue-500"
                   defaultValue={id}
                   onChange={onChangeid}
                 />
                 <button
-                  onClick={ok}
+                  onClick={idcheck}
                   type="submit"
-                  className="bg-blue-500   my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
+                  className="bg-blue-500 disabled  my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
                 >
                   확인
                 </button>
@@ -172,7 +172,11 @@ export default function signup() {
                   defaultValue={gender}
                   onChange={onChangegender}
                 >
-                  <option value="0" label="" selected="selected"></option>
+                  <option
+                    value="0"
+                    label="성별을 선택해 주세요"
+                    selected="selected"
+                  ></option>
                   <option value="남자">남자</option>
                   <option value="여자">여자</option>
                 </select>
@@ -186,7 +190,11 @@ export default function signup() {
                   defaultValue={formation}
                   onChange={onChangeformation}
                 >
-                  <option value="0" label="" selected="selected"></option>
+                  <option
+                    value=""
+                    label="포지션을 선택해 주세요"
+                    selected="selected"
+                  ></option>
                   <option value="FW">FW</option>
                   <option value="MF">MF</option>
                   <option value="DF">DF</option>
@@ -210,30 +218,10 @@ export default function signup() {
                   onClick={ok}
                   type="submit"
                   className="bg-blue-500 my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
+                  disabled
                 >
-                  Contact Sales
+                  회원가입
                 </button>
-              </div>
-            </div>
-            <div className="text-gray-800  px-4 py-2 lg:px-7 lg:py-4  flex flex-col md:w-full space-y-3  mb-5 lg:mb-0">
-              <h1>With Stripe you can:</h1>
-              <div className="flex">
-                <input type="checkbox" className="" name="" id="" />
-                <p className="text-justify ml-4">
-                  Focus critical developer resources on your core business
-                </p>
-              </div>
-              <div className="flex">
-                <input type="checkbox" className="" name="" id="" />
-                <p className="text-justify ml-4">
-                  Launch new products faster with less payments code.
-                </p>
-              </div>
-              <div className="flex">
-                <input type="checkbox" className="" name="" id="" />
-                <p className="text-justify ml-4">
-                  Improve conversion from international customers.
-                </p>
               </div>
             </div>
           </div>

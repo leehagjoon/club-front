@@ -3,7 +3,7 @@ import Layout from "@/components/Layout/layout";
 export default function index() {
   return (
     <Layout>
-      <div className="flex justify-center">
+      <div className="flex justify-center my-20">
         <div className="flex flex-col max-w-7xl justify-center items-center">
           <div className="flex md:flex-row flex-col max-w-7xl justify-center items-center">
             <div className="overflow-hidden bg-white m-2 shadow-lg flex flex-col md:flex-row justify-center md:w-1/3 w-3/4 hover:scale-105 hover:brightness-90">

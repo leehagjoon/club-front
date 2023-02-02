@@ -37,12 +37,12 @@ export default function login() {
 
   return (
     <Layout>
-      <div className="flex justify-center">
+      <div className="flex justify-center my-20">
         <div className="flex flex-col justify-center items-center md:flex-row shadow rounded-xl max-w-7xl w-[90%]  m-2">
           <div className=" w-full md:w-3/4">
             <div className="text-xl cursor-pointer flex flex-col justify-center items-center mt-5 md:mt-0 py-4">
               <h1 className="font-semibold text-xl md:text-5xl text-gray-600 m-2">
-                Login to your account
+                로그인
               </h1>
             </div>
             <div className="flex flex-col justify-center items-center m-2 space-y-6 md:space-y-8">
@@ -68,15 +68,15 @@ export default function login() {
             <div className=" flex flex-col justify-center items-center dtext-center mt-7 ">
               <button
                 onClick={loginfrm}
-                className="px-24 md:px-[118px] lg:w-[340px]	 lg:px-[140px] py-2 rounded-md text-white bg-gradient-to-l from-blue-400 to-emerald-400  font-medium m-2 mb-6 "
+                className="px-24 md:px-[118px] lg:w-[340px]	 lg:px-[140px] py-2 rounded-md text-white bg-gradient-to-l bg-blue-500 to-emerald-400  font-medium m-2 mb-6 "
               >
-                Sign In
+                로그인
               </button>
               <button
                 onClick={page}
-                className="  px-24 md:px-[118px] lg:w-[340px]  lg:px-[140px] py-2 rounded-md text-white bg-gradient-to-l from-blue-400 to-emerald-400  font-medium m-2 mb-6 "
+                className="  px-24 md:px-[118px] lg:w-[340px]  py-2 rounded-md text-white bg-gradient-to-l bg-blue-500 to-emerald-400  font-medium m-2 mb-6 "
               >
-                Sign up
+                회원가입
               </button>
             </div>
           </div>
