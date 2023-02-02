@@ -60,13 +60,13 @@ export default function signup() {
       axios
         .post("/api/acnt/cstmr/signup", {
           email: email,
-          password: password,
-          username: name,
-          gender: gender,
-          phone: phone,
-          formation: formation,
-          adress: adress,
-          id: id,
+          userPswd: password,
+          memberName: name,
+          genderCd: gender,
+          hpno: phone,
+          position: formation,
+          addr: adress,
+          userId: id,
         })
         .then(function (response) {
           console.log(response);
