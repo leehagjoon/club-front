@@ -23,9 +23,9 @@ export default function login() {
   const loginfrm = () => {
     // const data = await axios.post("/singup");
     axios
-      .post(`/api/acnt/cstmr/signin`, {
-        id: id,
-        password: password,
+      .post(`/api/acnt/jwt/login`, {
+        userId: id,
+        userPswd: password,
       })
       .then((response) => {
         const { accessToken } = response.data;

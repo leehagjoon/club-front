@@ -58,6 +58,7 @@ export default function signup() {
   };
 
   const ok = () => {
+    console.log("아아아아아아아아아아아아아아아");
     if (password == passwordConfirm) {
       // const data = await axios.post("/singup");
       axios
@@ -70,7 +71,7 @@ export default function signup() {
           position: formation,
           addr: adress,
           userId: id,
-          Zipcode: Zipcode,
+          Zip: Zipcode,
         })
         .then(function (response) {
           console.log(response);
@@ -265,7 +266,6 @@ export default function signup() {
                   onClick={ok}
                   type="submit"
                   className="bg-blue-500 my-2 px-3 py-1 text-white rounded-md hover:bg-blue-600"
-                  disabled
                 >
                   회원가입
                 </button>
